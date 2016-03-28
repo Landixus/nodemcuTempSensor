@@ -4,17 +4,17 @@
 const char* ssid     = "xxxxxxxxxxxxx"; // Your ssid
 const char* password = "xxxxxxxxxxxxx"; // Your Password
 
-OneWire  ds(4);  // on pin 2 (a 4.7K resistor is necessary)
-WiFiServer server(80);
+OneWire  ds(4);  // on pin 2 (a 4.7K resistor is really necessary!)
+WiFiServer server(80); //you can change port but 80 is standard
 
 void setup() {
-Serial.begin(9600);
+Serial.begin(9600);  // i think it works better with this baudrate
 delay(20);
 
-// Connect to WiFi network
+// Connect to your WiFi network
 Serial.println();
 Serial.println();
-Serial.print("Connecting to ");
+Serial.print("Connecting to... ");
 Serial.println(ssid);
 
 WiFi.begin(ssid, password);
@@ -31,7 +31,7 @@ server.begin();
 Serial.println("Server started");
 
 // Print the IP address
-Serial.println(WiFi.localIP());
+Serial.println(WiFi.localIP());  // this prints the IP address for later use in your browser
 }
 
 void loop() {
@@ -70,7 +70,7 @@ Serial.println("  Chip = DS18S20");  // or old DS1820
 type_s = 1;
 break;
 case 0x28:
-Serial.println("  Chip = DS18B20");
+Serial.println("  Chip = DS18B20");  // This one is in the instructable
 type_s = 0;
 break;
 case 0x22:
